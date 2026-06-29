@@ -16,6 +16,10 @@ import { site } from "../data/site";
   <main>
     <Hero />
     <Marquee items={site.networks} variant="net" label="Networks and outlets" />
+    <div class="collab-strip">
+      <div class="wrap"><span class="eyebrow">Directed talent including</span></div>
+      <Marquee items={site.collaborators} variant="names" label="Selected collaborators" />
+    </div>
     <FilterableWork />
     <Credits />
     <Bio />

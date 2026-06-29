@@ -5,17 +5,27 @@ interface Props {
   label?: string;
 }
 const { items, variant = "net", label } = Astro.props;
-// duplicate the set so the loop is seamless
-const loop = [...items, ...items];
 ---
 
-<div class={`marquee marquee--${variant}`} aria-label={label} role="marquee">
+<div class={`marquee marquee--${variant}`} role="group" aria-label={label}>
   <div class="marquee__track">
-    {loop.map((it) => (
-      <>
-        <span>{it}</span>
-        <span class="star" aria-hidden="true">✦</span>
-      </>
-    ))}
+    {/* visible + announced once */}
+    <div class="marquee__set">
+      {items.map((it) => (
+        <>
+          <span>{it}</span>
+          <span class="star" aria-hidden="true">✦</span>
+        </>
+      ))}
+    </div>
+    {/* duplicate purely to make the scroll seamless — hidden from assistive tech */}
+    <div class="marquee__set" aria-hidden="true">
+      {items.map((it) => (
+        <>
+          <span>{it}</span>
+          <span class="star">✦</span>
+        </>
+      ))}
+    </div>
   </div>
 </div>

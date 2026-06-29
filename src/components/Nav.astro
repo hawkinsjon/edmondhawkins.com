@@ -18,13 +18,13 @@ const links = [
       <span class="dot"></span>{site.name}
     </a>
 
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="nav__links" id="primary-menu" aria-label="Primary">
       {links.map((l) => <a href={l.href} data-filter={l.filter}>{l.label}</a>)}
       <a class="nav__reel" href="#" data-embed={embedUrl(reel)} data-title={`${site.name} — ${reel.title}`}>
         <span class="play-tri"></span>Reel
       </a>
     </nav>
 
-    <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-menu"><span></span></button>
   </div>
 </header>

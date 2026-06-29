@@ -12,7 +12,14 @@ import { site } from "../data/site";
     </div>
 
     <div class="contact__grid">
-      <form class="contact__form" action={site.contact.formEndpoint} method="POST" data-reveal>
+      <form
+        class="contact__form"
+        action={site.contact.formEndpoint}
+        method="POST"
+        data-fallback-email={site.contact.email}
+        data-ready={String(!site.contact.formEndpoint.includes("your-form-id"))}
+        data-reveal
+      >
         <div class="field">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required />

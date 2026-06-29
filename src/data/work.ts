@@ -22,6 +22,8 @@ export interface Show {
   year?: string;
   /** one-line context shown under the show title */
   note?: string;
+  /** optional recognition for the series (kept accurate to the show, not the individual) */
+  award?: string;
   clips: Clip[];
 }
 
@@ -33,7 +35,8 @@ export const shows: Show[] = [
     network: "Netflix",
     role: "Segment Director",
     year: "2019–2020",
-    note: "Directed deep-dive comedy segments for Hasan Minhaj's Peabody-winning Netflix series.",
+    award: "Peabody & Emmy Award–winning series",
+    note: "Directed deep-dive comedy segments for Hasan Minhaj's acclaimed Netflix series.",
     clips: [
       { title: "Why We Can't Retire", id: "j_aDGFXNfyw", featured: true },
       { title: "The Dark Side of the Video Game Industry", id: "pLAi_cmly6Q", start: 1317 },
