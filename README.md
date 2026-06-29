@@ -39,12 +39,26 @@ inert but the `mailto:` links work.
 
 ## Deploy to GitHub Pages
 
-1. Push this repo to GitHub.
-2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-3. The included workflow (`.github/workflows/deploy.yml`) builds and deploys on every push to `main`.
-4. **Custom domain:** `public/CNAME` already points at `edmondhawkins.com`. In your DNS, point
-   the apex `A`/`ALIAS` (or a `CNAME` for `www`) at GitHub Pages, then set the custom domain
-   under Settings → Pages. Once it's live you can decommission the DigitalOcean WordPress box.
+Already wired up. Every push to `main` runs `.github/workflows/deploy.yml`
+(Pages **Source: GitHub Actions**) and publishes to:
+
+> **https://hawkinsjon.github.io/edmondhawkins.com/**
+
+### Moving to the real domain (and killing the WordPress box)
+
+The site is base-aware, so switching to `edmondhawkins.com` is a 3-step flip:
+
+1. **`astro.config.mjs`** — set `site: "https://edmondhawkins.com"` and `base: "/"`.
+2. **Add `public/CNAME`** containing `edmondhawkins.com` (the value is saved in `CNAME.example`).
+3. **DNS** — the domain currently lives on Cloudflare in front of DigitalOcean. Point it at GitHub Pages:
+   - Apex `edmondhawkins.com` → four `A` records: `185.199.108.153`, `185.199.109.153`,
+     `185.199.110.153`, `185.199.111.153` (and/or `AAAA` to the `2606:50c0:8000–8003::153` set).
+   - `www` → `CNAME` to `hawkinsjon.github.io`.
+   - In Cloudflare set those DNS records to **DNS-only (grey cloud)** to start, so GitHub can issue the
+     TLS cert; you can re-enable proxying afterward.
+   - In repo **Settings → Pages → Custom domain**, enter `edmondhawkins.com` and enable **Enforce HTTPS**.
+
+Once it resolves, the DigitalOcean WordPress droplet can be powered off.
 
 ## Stack
 

@@ -9,7 +9,7 @@ const highlights = [
 <section class="section" id="bio">
   <div class="wrap bio">
     <figure class="bio__photo" data-reveal>
-      <img src="/img/portrait.jpg" alt={`${site.name} on set`} width="980" height="1225" loading="lazy" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/img/portrait.jpg`} alt={`${site.name} on set`} width="980" height="1225" loading="lazy" />
       <figcaption>On set — photo © Todd Owyoung</figcaption>
     </figure>
 

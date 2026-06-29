@@ -234,7 +234,7 @@ export const categoryLabels: Record<Category, string> = {
 // time) so the grid never depends on a flaky third-party thumbnail proxy.
 export function thumb(c: Clip): string {
   return c.source === "vimeo"
-    ? `/img/vimeo-${c.id}.jpg`
+    ? `${import.meta.env.BASE_URL.replace(/\/$/, "")}/img/vimeo-${c.id}.jpg`
     : `https://i.ytimg.com/vi/${c.id}/hqdefault.jpg`;
 }
 export function watchUrl(c: Clip): string {
