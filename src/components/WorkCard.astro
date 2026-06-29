@@ -1,8 +1,8 @@
 ---
-import { type FlatClip, thumb, embedUrl, categoryLabels } from "../data/work";
+import { type FlatClip, thumb, embedUrl } from "../data/work";
 interface Props { clip: FlatClip; eager?: boolean; }
 const { clip, eager = false } = Astro.props;
-const title = `${clip.show} — ${clip.title}`;
+const title = `${clip.show}: ${clip.title}`;
 ---
 
 <button
@@ -14,7 +14,6 @@ const title = `${clip.show} — ${clip.title}`;
 >
   <span class="card__media">
     {clip.network && <span class="card__badge">{clip.network}</span>}
-    <span class="card__cat">{categoryLabels[clip.category]}</span>
     <img
       src={thumb(clip)}
       alt={title}

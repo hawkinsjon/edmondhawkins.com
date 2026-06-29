@@ -1,0 +1,24 @@
+---
+import WorkCard from "./WorkCard.astro";
+import { vfxClips } from "../data/work";
+---
+
+<section class="section section--tight" id="craft">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">The Edge</span>
+        <h2 class="section-title">Animation<br />&amp; VFX</h2>
+      </div>
+      <p class="section-sub">
+        When he is not directing, he is the animator and visual-effects artist behind sketches on
+        Saturday Night Live and Late Night with Jimmy Fallon. A director who can build the effect
+        himself means fewer hands between the idea and the screen.
+      </p>
+    </div>
+
+    <div class="work-grid" data-reveal>
+      {vfxClips.map((clip, i) => <WorkCard clip={clip} eager={i < 2} />)}
+    </div>
+  </div>
+</section>

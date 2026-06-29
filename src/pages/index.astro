@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
 import Marquee from "../components/Marquee.astro";
 import FilterableWork from "../components/FilterableWork.astro";
+import Craft from "../components/Craft.astro";
 import Credits from "../components/Credits.astro";
 import Bio from "../components/Bio.astro";
 import Contact from "../components/Contact.astro";
@@ -21,6 +22,7 @@ import { site } from "../data/site";
       <Marquee items={site.collaborators} variant="names" label="Selected collaborators" />
     </div>
     <FilterableWork />
+    <Craft />
     <Credits />
     <Bio />
     <Contact />

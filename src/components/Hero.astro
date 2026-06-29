@@ -1,6 +1,8 @@
 ---
 import { site } from "../data/site";
-import { reel, embedUrl, thumb, stats } from "../data/work";
+import { reel, embedUrl } from "../data/work";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const reelTitle = `${site.name}, ${reel.title}`;
 ---
 
 <section class="hero" id="top">
@@ -9,7 +11,7 @@ import { reel, embedUrl, thumb, stats } from "../data/work";
 
   <div class="wrap hero__inner">
     <div class="hero__copy">
-      <span class="eyebrow">{site.roles.join(" · ")}</span>
+      <span class="eyebrow">{site.role}</span>
 
       <h1 class="hero__name">
         <span>Edmond</span>
@@ -19,26 +21,24 @@ import { reel, embedUrl, thumb, stats } from "../data/work";
       <p class="hero__tag">{site.tagline}</p>
 
       <div class="hero__cta">
-        <a class="btn btn--primary" href="#" data-embed={embedUrl(reel)} data-title={`${site.name} — ${reel.title}`}>
+        <a class="btn btn--primary" href="#" data-embed={embedUrl(reel)} data-title={reelTitle}>
           <span class="play-tri"></span> Watch the Reel
         </a>
         <a class="btn btn--ghost" href="#work">See the Work</a>
       </div>
 
-      <div class="hero__stats">
-        <div class="hero__stat"><div class="n">{stats.videos}+</div><div class="l">Films &amp; Clips</div></div>
-        <div class="hero__stat"><div class="n">{stats.shows}</div><div class="l">Shows &amp; Series</div></div>
-        <div class="hero__stat"><div class="n">{stats.networks}</div><div class="l">Networks</div></div>
-      </div>
+      <ul class="hero__credits">
+        {site.heroCredits.map((c) => (
+          <li>
+            <span class="net">{c.network}</span>
+            <span class="show">{c.show}</span>
+          </li>
+        ))}
+      </ul>
     </div>
 
-    <button
-      class="hero__reel"
-      data-embed={embedUrl(reel)}
-      data-title={`${site.name} — ${reel.title}`}
-      aria-label="Play directing reel"
-    >
-      <img src={thumb(reel)} alt="Edmond Hawkins directing reel" loading="eager" width="640" height="400" style="width:100%;height:100%;object-fit:cover;" />
+    <button class="hero__reel" data-embed={embedUrl(reel)} data-title={reelTitle} aria-label="Play directing reel">
+      <img src={`${base}/img/reel-poster.jpg`} alt="Edmond Hawkins, director" loading="eager" width="640" height="360" />
       <span class="hero__reel-shade"></span>
       <span class="card__play"><i></i></span>
       <span class="card__badge" style="z-index:4;">▶ Directing Reel</span>

@@ -1,12 +1,13 @@
 ---
 import { site } from "../data/site";
 import { reel, embedUrl } from "../data/work";
+const reelTitle = `${site.name}, ${reel.title}`;
 const links = [
   { href: "#work", label: "Work", filter: "all" },
   { href: "#work", label: "Television", filter: "television" },
-  { href: "#work", label: "Film", filter: "film" },
+  { href: "#work", label: "Commercials", filter: "commercial" },
   { href: "#work", label: "Music", filter: "music" },
-  { href: "#work", label: "Web", filter: "web" },
+  { href: "#craft", label: "VFX" },
   { href: "#bio", label: "Bio" },
   { href: "#contact", label: "Contact" },
 ];
@@ -20,7 +21,7 @@ const links = [
 
     <nav class="nav__links" id="primary-menu" aria-label="Primary">
       {links.map((l) => <a href={l.href} data-filter={l.filter}>{l.label}</a>)}
-      <a class="nav__reel" href="#" data-embed={embedUrl(reel)} data-title={`${site.name} — ${reel.title}`}>
+      <a class="nav__reel" href="#" data-embed={embedUrl(reel)} data-title={reelTitle}>
         <span class="play-tri"></span>Reel
       </a>
     </nav>

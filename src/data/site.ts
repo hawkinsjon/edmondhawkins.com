@@ -1,29 +1,39 @@
-// Global site/profile data for Edmond Hawkins — Writer · Director · Animator
+// Global site/profile data for Edmond Hawkins — positioning: DIRECTOR first.
 export const site = {
   name: "Edmond Hawkins",
-  roles: ["Writer", "Director", "Animator"],
-  // Short, punchy positioning line for the hero.
-  tagline: "Brooklyn-based comedy director who builds the joke, shoots the joke, and does the VFX on the joke.",
-  // Longer bio, lifted and lightly tightened from the original site.
-  bio: [
-    "Edmond Hawkins is a Brooklyn-based comedy writer and director with a deep background in animation and visual effects.",
-    "He was Studio & Segment Director on both seasons of HBO's Wyatt Cenac's Problem Areas, a Segment Director on Netflix's Patriot Act with Hasan Minhaj, and spent four years as Animation Director / Head of Graphics on Late Night with Jimmy Fallon.",
-    "Along the way he's created and directed his own shows, cut music videos for Will Butler and Grooms, and built more than a few robots, monsters and one very memorable Yule Log out of cardboard and pixels.",
+  // Primary identity the site sells.
+  role: "Comedy Director",
+  // Genuine differentiator, kept as a credential (not a competing title).
+  craft: "Animation & VFX",
+  // Short, punchy hero line. Director first; VFX as the superpower. No dashes.
+  tagline:
+    "A comedy director for Netflix, HBO and Fuse who does his own animation and visual effects, so the idea in his head is the one that lands on screen.",
+  // Three prestige credit callouts for the hero (network + show), in place of vanity stats.
+  heroCredits: [
+    { network: "NETFLIX", show: "Patriot Act" },
+    { network: "HBO", show: "Problem Areas" },
+    { network: "truTV", show: "The Screen Test" },
   ],
-  // Marquee of networks/outlets his work has lived on.
-  networks: ["NETFLIX", "HBO", "NBC", "truTV", "FUSE", "MNN"],
-  // Notable on-screen collaborators, surfaced as a credibility strip.
+  // Bio. Director-led; animation/VFX framed as the edge. Writer dropped (per direction).
+  bio: [
+    "Edmond Hawkins is a Brooklyn-based comedy director.",
+    "He directed segments for Netflix's Patriot Act with Hasan Minhaj, was Studio & Segment Director across both seasons of HBO's Wyatt Cenac's Problem Areas, created and directed his own pilot for truTV, and directs music videos and commercials.",
+    "He is also a sought-after animator and visual-effects artist, handling animation and VFX for Saturday Night Live and Late Night with Jimmy Fallon. That means he can see a joke all the way through, from the idea to the finished frame.",
+  ],
+  // Marquee of outlets the work has lived on.
+  networks: ["NETFLIX", "HBO", "SNL", "truTV", "FUSE", "NBC"],
+  // Notable on-screen collaborators (social proof).
   collaborators: [
-    "Hasan Minhaj", "Wyatt Cenac", "Jimmy Fallon", "Pedro Pascal", "Natasha Lyonne",
-    "Will Butler", "James Franco", "Nick Offerman", "Janeane Garofalo", "Abbi Jacobson",
-    "Ilana Glazer", "Richard Kind", "Rachel Dratch", "Missy Elliott", "Lena Waithe",
-    "Kid Fury & Crissle", "Desus & Mero", "Chris Gethard", "John Milhiser", "Joe Pera",
+    "Hasan Minhaj", "Wyatt Cenac", "Pedro Pascal", "Natasha Lyonne", "Will Butler",
+    "James Franco", "Nick Offerman", "Janeane Garofalo", "Abbi Jacobson", "Ilana Glazer",
+    "Richard Kind", "Rachel Dratch", "Missy Elliott", "Lena Waithe", "Kid Fury & Crissle",
+    "Desus & Mero", "John Milhiser", "Joe Pera",
   ],
   contact: {
-    // TODO: confirm with Edmond — placeholder until real address/handles are supplied.
+    // TODO: confirm with Edmond. Placeholder until a real address is supplied.
     email: "hello@edmondhawkins.com",
     location: "Brooklyn, NY",
-    // Formspree (or Web3Forms) endpoint — drop a real ID here to make the form send.
+    // Formspree / Web3Forms endpoint. Drop a real ID here to make the form post in place.
     formEndpoint: "https://formspree.io/f/your-form-id",
   },
   socials: [

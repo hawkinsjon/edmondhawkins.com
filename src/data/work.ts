@@ -1,16 +1,15 @@
-// The complete, verified body of work — grouped by show/project.
-// Every video id below was checked live against YouTube/Vimeo oEmbed.
+// The body of work, curated and ordered to land directing jobs.
+// Strongest, most credible directing first. Old web-sketch filler removed.
+// Animation/VFX work is kept separate (category "vfx") as a craft credential.
+// Every video id verified live. No dashes anywhere in copy.
 
-export type Category = "television" | "film" | "music" | "web";
+export type Category = "television" | "commercial" | "music" | "film" | "vfx";
 
 export interface Clip {
   title: string;
-  /** YouTube id, or Vimeo numeric id when source === "vimeo" */
   id: string;
   source?: "youtube" | "vimeo";
-  /** optional start time (seconds) for deep-linked clips */
   start?: number;
-  /** mark the strongest 1-2 pieces per show for the "Selected Work" grid */
   featured?: boolean;
 }
 
@@ -20,22 +19,20 @@ export interface Show {
   network?: string;
   role: string;
   year?: string;
-  /** one-line context shown under the show title */
   note?: string;
-  /** optional recognition for the series (kept accurate to the show, not the individual) */
   award?: string;
   clips: Clip[];
 }
 
 export const shows: Show[] = [
-  // ───────────────────────── TELEVISION ─────────────────────────
+  // ───────── DIRECTING: the headline credits, best first ─────────
   {
     category: "television",
     show: "Patriot Act with Hasan Minhaj",
     network: "Netflix",
     role: "Segment Director",
-    year: "2019–2020",
-    award: "Peabody & Emmy Award–winning series",
+    year: "2019 to 2020",
+    award: "Peabody & Emmy Award-winning series",
     note: "Directed deep-dive comedy segments for Hasan Minhaj's acclaimed Netflix series.",
     clips: [
       { title: "Why We Can't Retire", id: "j_aDGFXNfyw", featured: true },
@@ -48,20 +45,35 @@ export const shows: Show[] = [
     show: "Wyatt Cenac's Problem Areas",
     network: "HBO",
     role: "Studio & Segment Director",
-    year: "2018–2019",
+    year: "2018 to 2019",
     note: "Studio and segment director across both seasons of Wyatt Cenac's HBO docu-comedy.",
     clips: [
       { title: "Space Billionaires", id: "hHPONwRZZzM", featured: true },
       { title: "Banking Deserts", id: "pENUvXEl69c" },
       { title: "Problem Areas for City Dogs", id: "qklgRliRzPM" },
-      { title: "Smartphone Heaven", id: "3MQeMzCdibM" },
-      { title: "America's Schools", id: "DFnIdq9fFhs" },
-      { title: "Union Labor — Full Episode (S2E1)", id: "r0ziIRPcl4s" },
-      { title: "Full Episode — S2E6", id: "EcHGw5lmhiM" },
-      { title: "Surveillance (S2E2 Clip)", id: "hU-cPVD95pM" },
-      { title: "Adult Baby Walker", id: "1Q5UiZVcQf4" },
-      { title: "Cow Poop", id: "iLqFu6cmdqI" },
-      { title: "Dentistry", id: "FngtRa2Kkms" },
+      { title: "Problem Areas in America's Schools", id: "DFnIdq9fFhs" },
+      { title: "Union Labor, Full Episode (S2 E1)", id: "r0ziIRPcl4s" },
+      { title: "Surveillance", id: "hU-cPVD95pM" },
+    ],
+  },
+  {
+    category: "music",
+    show: "Will Butler",
+    network: "Arcade Fire",
+    role: "Director",
+    note: "Official music video for the Arcade Fire multi-instrumentalist's solo single.",
+    clips: [{ title: "Friday Night (Official Video)", id: "rOoXr1qp9s4", featured: true }],
+  },
+  {
+    category: "television",
+    show: "The Screen Test",
+    network: "truTV",
+    role: "Creator, Director & EP",
+    note: "Created, directed and finished his own sketch-comedy pilot, top to bottom.",
+    clips: [
+      { title: "Love Triangle in the ER, with Rachel Dratch", id: "oX9V80CEXD0", featured: true },
+      { title: "Pilot", id: "hWHqRiPzZCU" },
+      { title: "Italian Restaurant", id: "hqa9IZ15K9I" },
     ],
   },
   {
@@ -72,113 +84,35 @@ export const shows: Show[] = [
     year: "2019",
     note: "Directed the TV adaptation of the iconic pop-culture podcast.",
     clips: [
-      { title: "Series Premiere — feat. Desus & Mero", id: "z0k-AbaPP6s", featured: true },
+      { title: "Series Premiere, with Desus & Mero", id: "z0k-AbaPP6s", featured: true },
       { title: "The Missy Elliott Hall of Fame", id: "GT2EhCQNSGk" },
-      { title: "Lena Waithe — Extended Cut", id: "IcI7mwDhqNU" },
+      { title: "Lena Waithe (Extended Cut)", id: "IcI7mwDhqNU" },
     ],
-  },
-  {
-    category: "television",
-    show: "The Screen Test",
-    network: "truTV",
-    role: "Creator · Writer · Director · EP · VFX",
-    note: "Created and ran his own sketch-comedy pilot — top to bottom.",
-    clips: [
-      { title: "Love Triangle in the ER — feat. Rachel Dratch", id: "oX9V80CEXD0", featured: true },
-      { title: "Pilot", id: "hWHqRiPzZCU" },
-      { title: "Italian Restaurant", id: "hqa9IZ15K9I" },
-    ],
-  },
-  {
-    category: "television",
-    show: "Late Night with Jimmy Fallon",
-    network: "NBC",
-    role: "Animation Director / Head of Graphics",
-    year: "2009–2013",
-    note: "Four years leading graphics and animation for NBC's Late Night.",
-    clips: [
-      { title: "Large Marge", id: "jBgNaDCtIus", featured: true },
-      { title: "Tootsie Pop: Alternate Ending", id: "21206793", source: "vimeo" },
-      { title: "Kicking Stuff", id: "41yKPwIHWGo" },
-    ],
-  },
-  {
-    category: "television",
-    show: "Chris Gethard Presents",
-    network: "Fusion / MNN",
-    role: "Live Studio Director",
-    clips: [
-      { title: "Comedy Amateurclass Vol. 2 — Martin Urbano", id: "kdXjI1TCwNg" },
-      { title: "C.L.O.N. — Riley Soloner", id: "X9wOcq_vpCQ" },
-      { title: "CLON 3: Song of the Summer", id: "T67zQXQlNfQ" },
-    ],
-  },
-  {
-    category: "television",
-    show: "The Special Without Brett Davis",
-    network: "MNN",
-    role: "Live Studio Director / Producer",
-    note: "100+ episodes of live, anything-goes public-access comedy.",
-    clips: [
-      { title: "A Look at The Special", id: "EGWNGQHvMuE" },
-      { title: "River L. Ramirez Explores Williamsburg", id: "nDmI7VUGE2g" },
-      { title: "Richard Kind Helps Count Dracula", id: "i-QuOwAZZ-M", featured: true },
-    ],
-  },
-
-  // ───────────────────────── FILM ─────────────────────────
-  {
-    category: "film",
-    show: "The Hawkins Family Yule Log",
-    role: "Writer · Director · Producer · VFX",
-    note: "A feature-length comedy Yule Log — written, directed and effects-finished solo.",
-    clips: [{ title: "Official Trailer", id: "w-4IG6jFKeQ", featured: true }],
-  },
-  {
-    category: "film",
-    show: "Short Films",
-    role: "Writer · Director",
-    clips: [
-      { title: "Spare Time", id: "6284497", source: "vimeo" },
-      { title: "Soccer Time", id: "mFbZJ5YO1oQ" },
-      { title: "Dr. Seuss' The Pants With Nobody Inside Them", id: "sJjTCr6BIBs", featured: true },
-    ],
-  },
-
-  // ───────────────────────── MUSIC VIDEOS ─────────────────────────
-  {
-    category: "music",
-    show: "Will Butler — “Friday Night”",
-    network: "Arcade Fire",
-    role: "Director",
-    note: "Official music video for the Arcade Fire multi-instrumentalist's solo single.",
-    clips: [{ title: "Friday Night (Official Video)", id: "rOoXr1qp9s4", featured: true }],
   },
   {
     category: "music",
-    show: "Grooms — “Softer Now”",
+    show: "Grooms",
     role: "Director",
     note: "Moody black-and-white narrative video for the Brooklyn band.",
     clips: [{ title: "Softer Now (Official Video)", id: "Um93ZZwGajM", featured: true }],
   },
-
-  // ───────────────────────── WEB ─────────────────────────
   {
-    category: "web",
+    category: "commercial",
     show: "Commercials & Parodies",
-    role: "Director · VFX",
+    role: "Director & VFX",
+    note: "Spots and commercial parodies, directed and effects-finished.",
     clips: [
-      { title: "#WearAMask PSA — New York Tough", id: "cp0uG4iwbUA", featured: true },
+      { title: "New York Tough #WearAMask PSA", id: "cp0uG4iwbUA", featured: true },
       { title: "Presidential Strength ZzzQuil", id: "_fnkHItFQ8c" },
       { title: "Gatorade OxySticks", id: "Mgp6V7VGTjE" },
-      { title: "Belsomra — Insert Edit", id: "x0Bo_G4tDDM" },
+      { title: "Belsomra (Insert Edit)", id: "x0Bo_G4tDDM" },
     ],
   },
   {
-    category: "web",
+    category: "television",
     show: "The Corrigan Show",
     role: "Director",
-    note: "Kevin Corrigan interviews his famous friends. Just don't expect normal questions.",
+    note: "Kevin Corrigan interviews his famous friends. The guest list does the talking.",
     clips: [
       { title: "Pedro Pascal", id: "6OE6H7X5WiA", featured: true },
       { title: "Nick Offerman", id: "BIHBDVSKwqQ" },
@@ -188,50 +122,73 @@ export const shows: Show[] = [
     ],
   },
   {
-    category: "web",
-    show: "The Jon Friedman Internet Program",
-    role: "Director · Animator",
+    category: "film",
+    show: "The Hawkins Family Yule Log",
+    role: "Creator, Director & VFX",
+    note: "A feature-length comedy Yule Log, directed and effects-finished solo.",
+    clips: [{ title: "Official Trailer", id: "w-4IG6jFKeQ", featured: true }],
+  },
+  {
+    category: "film",
+    show: "Short Films",
+    role: "Director",
     clips: [
-      { title: "Milk", id: "wQFw9bDno2s" },
-      { title: "The First Guy to Be Waved At", id: "h1-mx8qG7pA" },
-      { title: "Side Effects", id: "GNu1sxQeBvM" },
+      { title: "Dr. Seuss' The Pants With Nobody Inside Them", id: "sJjTCr6BIBs" },
+      { title: "Soccer Time", id: "mFbZJ5YO1oQ" },
+      { title: "Spare Time", id: "6284497", source: "vimeo" },
     ],
   },
   {
-    category: "web",
-    show: "Fixing Breaking Bad",
-    role: "Director · VFX",
+    category: "television",
+    show: "Chris Gethard Presents",
+    network: "Fusion",
+    role: "Live Studio Director",
+    note: "Live, single-take studio directing for the cult comedy series.",
     clips: [
-      { title: "Part 1", id: "UGuv6xsVCVc" },
-      { title: "Part 2", id: "Q6vYiGqQLDU" },
+      { title: "C.L.O.N. with Riley Soloner", id: "X9wOcq_vpCQ" },
+      { title: "Comedy Amateurclass with Martin Urbano", id: "kdXjI1TCwNg" },
     ],
   },
   {
-    category: "web",
-    show: "Shorts & Sketches",
-    role: "Director · VFX",
+    category: "television",
+    show: "The Special Without Brett Davis",
+    network: "MNN",
+    role: "Live Studio Director & Producer",
+    note: "Over 100 episodes of live, anything-goes studio comedy.",
     clips: [
-      { title: "Caper Break Up — feat. John Milhiser", id: "igbfaAYawJ0" },
-      { title: "Nature Doc'ing", id: "QFjruJMVPGo" },
-      { title: "Saturday Morning'ish Cartoons", id: "G1auBCyHhho" },
-      { title: "Blackmagic 4K — Brooklyn", id: "bNB2hkv7BNI" },
+      { title: "Richard Kind Helps Count Dracula", id: "i-QuOwAZZ-M" },
+      { title: "River L. Ramirez Explores Williamsburg", id: "nDmI7VUGE2g" },
+    ],
+  },
+
+  // ───────── ANIMATION & VFX: the craft credential (kept separate) ─────────
+  {
+    category: "vfx",
+    show: "Late Night with Jimmy Fallon",
+    network: "NBC",
+    role: "Animation Director & Head of Graphics",
+    year: "2009 to 2013",
+    note: "Four years leading animation and graphics for NBC's Late Night.",
+    clips: [
+      { title: "Large Marge", id: "jBgNaDCtIus", featured: true },
+      { title: "Tootsie Pop, Alternate Ending", id: "21206793", source: "vimeo" },
+      { title: "Kicking Stuff", id: "41yKPwIHWGo" },
     ],
   },
 ];
 
-// The reel gets first-class treatment.
 export const reel: Clip = { title: "Directing Reel", id: "_HXU3faQEMU" };
 
+const directingCats: Category[] = ["television", "commercial", "music", "film"];
 export const categoryLabels: Record<Category, string> = {
   television: "Television",
-  film: "Film",
+  commercial: "Commercials",
   music: "Music Videos",
-  web: "Web & Commercial",
+  film: "Film",
+  vfx: "Animation & VFX",
 };
+export const filterCats = directingCats;
 
-// Thumbnail + watch URLs that work for both sources.
-// Vimeo thumbnails are self-hosted (fetched from Vimeo's oEmbed at build prep
-// time) so the grid never depends on a flaky third-party thumbnail proxy.
 export function thumb(c: Clip): string {
   return c.source === "vimeo"
     ? `${import.meta.env.BASE_URL.replace(/\/$/, "")}/img/vimeo-${c.id}.jpg`
@@ -248,20 +205,22 @@ export function embedUrl(c: Clip, autoplay = true): string {
     : `https://www.youtube-nocookie.com/embed/${c.id}?autoplay=${ap}&rel=0&modestbranding=1${c.start ? `&start=${c.start}` : ""}`;
 }
 
-// Flattened list (clip + its show context) for the filterable grid.
 export interface FlatClip extends Clip {
   category: Category;
   show: string;
   network?: string;
   role: string;
 }
-export const allClips: FlatClip[] = shows.flatMap((s) =>
-  s.clips.map((c) => ({ ...c, category: s.category, show: s.show, network: s.network, role: s.role }))
-);
-export const featuredClips: FlatClip[] = allClips.filter((c) => c.featured);
-
-export const stats = {
-  videos: allClips.length,
-  shows: shows.length,
-  networks: 6,
-};
+function flatten(list: Show[]): FlatClip[] {
+  return list.flatMap((s) =>
+    s.clips.map((c) => ({ ...c, category: s.category, show: s.show, network: s.network, role: s.role }))
+  );
+}
+export const allClips: FlatClip[] = flatten(shows);
+// directing index (the filterable grid) excludes the VFX section
+export const indexClips: FlatClip[] = allClips.filter((c) => directingCats.includes(c.category));
+export const featuredClips: FlatClip[] = indexClips.filter((c) => c.featured);
+export const vfxClips: FlatClip[] = allClips.filter((c) => c.category === "vfx");
+// directing shows, in order, for the credits list (VFX listed under its own block)
+export const directingShows = shows.filter((s) => s.category !== "vfx");
+export const vfxShows = shows.filter((s) => s.category === "vfx");

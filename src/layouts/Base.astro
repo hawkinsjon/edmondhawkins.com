@@ -7,8 +7,8 @@ interface Props {
   description?: string;
 }
 const {
-  title = `${site.name} — Writer · Director · Animator`,
-  description = "Edmond Hawkins is a Brooklyn-based comedy director (HBO, Netflix, NBC, truTV) — directing, writing and visual effects.",
+  title = `${site.name} · Comedy Director`,
+  description = "Edmond Hawkins is a Brooklyn-based comedy director (Netflix, HBO, truTV, Fuse) who also does his own animation and visual effects.",
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, ""); // "" or "/edmondhawkins.com"
@@ -164,7 +164,7 @@ const ogImage = new URL(`${base}/img/og.jpg`, Astro.site).href;
           const message = String(data.get("message") || "");
           const to = form.dataset.fallbackEmail || "";
           const subject = encodeURIComponent(`Project inquiry from ${name || "the website"}`);
-          const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+          const body = encodeURIComponent(`${message}\n\nFrom: ${name}\n${email}`);
           window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
         });
       }

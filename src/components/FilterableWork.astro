@@ -1,38 +1,35 @@
 ---
 import WorkCard from "./WorkCard.astro";
-import { allClips, featuredClips, categoryLabels, type Category } from "../data/work";
+import { indexClips, featuredClips, filterCats, categoryLabels } from "../data/work";
 
-const cats: Category[] = ["television", "film", "music", "web"];
-const counts: Record<string, number> = { all: allClips.length };
-for (const c of cats) counts[c] = allClips.filter((x) => x.category === c).length;
+const counts: Record<string, number> = { all: indexClips.length };
+for (const c of filterCats) counts[c] = indexClips.filter((x) => x.category === c).length;
 ---
 
 <section class="section" id="work">
   <div class="wrap">
     <div class="section-head" data-reveal>
       <div>
-        <span class="eyebrow">The Work</span>
-        <h2 class="section-title">Selected<br />Work</h2>
+        <span class="eyebrow">Selected Work</span>
+        <h2 class="section-title">The<br />Directing</h2>
       </div>
       <p class="section-sub">
-        Comedy across every format — late-night, docu-series, music videos and commercials, for the
-        networks that set the tone. Tap any frame to watch.
+        Comedy he directed for Netflix, HBO, Fuse and truTV, plus music videos and commercials. Tap
+        any frame to watch.
       </p>
     </div>
 
-    <!-- Curated highlights -->
     <div class="work-grid work-grid--feature" data-reveal>
       {featuredClips.map((clip, i) => <WorkCard clip={clip} eager={i < 3} />)}
     </div>
   </div>
 
-  <!-- Full, filterable index -->
   <div class="wrap" id="index" style="margin-top: clamp(3.5rem, 7vw, 6rem);">
     <div class="index-head" data-reveal>
       <h3 class="index-title">Full Index <span>{counts.all} films &amp; clips</span></h3>
       <div class="filters" role="group" aria-label="Filter work by category">
         <button class="filter" data-filter="all" aria-pressed="true">All <span class="c">{counts.all}</span></button>
-        {cats.map((c) => (
+        {filterCats.map((c) => (
           <button class="filter" data-filter={c} aria-pressed="false">
             {categoryLabels[c]} <span class="c">{counts[c]}</span>
           </button>
@@ -41,7 +38,7 @@ for (const c of cats) counts[c] = allClips.filter((x) => x.category === c).lengt
     </div>
 
     <div class="work-grid" style="margin-top: clamp(1.4rem, 3vw, 2rem);" data-reveal>
-      {allClips.map((clip) => <WorkCard clip={clip} />)}
+      {indexClips.map((clip) => <WorkCard clip={clip} />)}
     </div>
     <p class="work-empty">No pieces in this category yet.</p>
   </div>
