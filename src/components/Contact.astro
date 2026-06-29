@@ -1,0 +1,45 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="eyebrow">Contact</span>
+      <p class="contact__cta">
+        Let's make<br />something <a href={`mailto:${site.contact.email}`}>good.</a>
+      </p>
+    </div>
+
+    <div class="contact__grid">
+      <form class="contact__form" action={site.contact.formEndpoint} method="POST" data-reveal>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="message">Project / Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button class="btn btn--primary" type="submit">Send Message</button>
+      </form>
+
+      <dl class="contact__meta" data-reveal>
+        <dt>Email</dt>
+        <dd><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></dd>
+        <dt>Based in</dt>
+        <dd>{site.contact.location}</dd>
+        <dt>Elsewhere</dt>
+        <dd>
+          <div class="socials">
+            {site.socials.map((s) => <a href={s.href} target="_blank" rel="noopener">{s.label}</a>)}
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</section>

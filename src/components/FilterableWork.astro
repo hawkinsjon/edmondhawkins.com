@@ -1,0 +1,37 @@
+---
+import WorkCard from "./WorkCard.astro";
+import { allClips, categoryLabels, type Category } from "../data/work";
+
+const cats: Category[] = ["television", "film", "music", "web"];
+const counts: Record<string, number> = { all: allClips.length };
+for (const c of cats) counts[c] = allClips.filter((x) => x.category === c).length;
+---
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">The Work</span>
+        <h2 class="section-title">Selected<br />Work</h2>
+      </div>
+      <p class="section-sub">
+        Comedy across every format — late-night, docu-series, music videos, commercials and his own
+        sketch shows. Tap any frame to watch.
+      </p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter work by category" data-reveal>
+      <button class="filter" data-filter="all" aria-pressed="true">All <span class="c">{counts.all}</span></button>
+      {cats.map((c) => (
+        <button class="filter" data-filter={c} aria-pressed="false">
+          {categoryLabels[c]} <span class="c">{counts[c]}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="work-grid" style="margin-top: clamp(1.6rem, 3vw, 2.4rem);" data-reveal>
+      {allClips.map((clip, i) => <WorkCard clip={clip} eager={i < 3} />)}
+    </div>
+    <p class="work-empty">No pieces in this category yet.</p>
+  </div>
+</section>

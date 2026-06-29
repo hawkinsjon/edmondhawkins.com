@@ -1,0 +1,151 @@
+---
+import "../styles/global.css";
+import { site } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = `${site.name} — Writer · Director · Animator`,
+  description = "Edmond Hawkins is a Brooklyn-based comedy director (HBO, Netflix, NBC, truTV) — directing, writing and visual effects.",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL("/img/og.jpg", Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0a0a0c" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/img/portrait.jpg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD: Person -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: site.name,
+        jobTitle: "Director",
+        description: description,
+        address: { "@type": "PostalAddress", addressLocality: "Brooklyn", addressRegion: "NY" },
+        url: Astro.site?.href,
+      })}
+    />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Global video lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video player">
+      <div class="lightbox__frame">
+        <button class="lightbox__close" id="lightbox-close" aria-label="Close video"></button>
+        <div id="lightbox-mount"></div>
+        <span class="lightbox__title" id="lightbox-title"></span>
+      </div>
+    </div>
+
+    <script>
+      // ---- sticky nav shadow ----
+      const nav = document.querySelector(".nav");
+      if (nav) {
+        const onScroll = () => nav.classList.toggle("is-stuck", window.scrollY > 8);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+
+      // ---- mobile menu ----
+      const toggle = document.querySelector(".nav__toggle");
+      toggle?.addEventListener("click", () => nav?.classList.toggle("is-open"));
+      document.querySelectorAll(".nav__links a").forEach((a) =>
+        a.addEventListener("click", () => nav?.classList.remove("is-open"))
+      );
+
+      // ---- filters ----
+      const filterBtns = document.querySelectorAll<HTMLButtonElement>(".filter");
+      const cards = document.querySelectorAll<HTMLElement>(".card[data-cat]");
+      const empty = document.querySelector<HTMLElement>(".work-empty");
+      function applyFilter(f: string) {
+        filterBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === f)));
+        let shown = 0;
+        cards.forEach((c) => {
+          const match = f === "all" || c.dataset.cat === f;
+          c.classList.toggle("is-hidden", !match);
+          if (match) shown++;
+        });
+        if (empty) empty.style.display = shown ? "none" : "block";
+      }
+      filterBtns.forEach((btn) => btn.addEventListener("click", () => applyFilter(btn.dataset.filter!)));
+      // nav category links: filter the grid, then let the #work anchor scroll
+      document.querySelectorAll<HTMLElement>(".nav__links a[data-filter]").forEach((a) =>
+        a.addEventListener("click", () => applyFilter(a.dataset.filter!))
+      );
+
+      // ---- lightbox ----
+      const lb = document.getElementById("lightbox")!;
+      const mount = document.getElementById("lightbox-mount")!;
+      const lbTitle = document.getElementById("lightbox-title")!;
+      const closeBtn = document.getElementById("lightbox-close")!;
+      let lastFocus: HTMLElement | null = null;
+
+      function openVideo(src: string, title: string, trigger?: HTMLElement) {
+        lastFocus = trigger ?? null;
+        mount.innerHTML = `<iframe src="${src}" title="${title.replace(/"/g, "")}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>`;
+        lbTitle.textContent = title;
+        lb.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+      function closeVideo() {
+        lb.classList.remove("is-open");
+        mount.innerHTML = "";
+        document.body.style.overflow = "";
+        lastFocus?.focus();
+      }
+      document.querySelectorAll<HTMLElement>("[data-embed]").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          openVideo(el.dataset.embed!, el.dataset.title || "", el);
+        });
+      });
+      closeBtn.addEventListener("click", closeVideo);
+      lb.addEventListener("click", (e) => { if (e.target === lb) closeVideo(); });
+      window.addEventListener("keydown", (e) => { if (e.key === "Escape" && lb.classList.contains("is-open")) closeVideo(); });
+
+      // ---- scroll reveal ----
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } }),
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+      );
+      document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

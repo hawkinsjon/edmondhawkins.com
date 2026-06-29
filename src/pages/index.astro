@@ -1,0 +1,25 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
+import FilterableWork from "../components/FilterableWork.astro";
+import Credits from "../components/Credits.astro";
+import Bio from "../components/Bio.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+---
+
+<Base>
+  <Nav />
+  <main>
+    <Hero />
+    <Marquee items={site.networks} variant="net" label="Networks and outlets" />
+    <FilterableWork />
+    <Credits />
+    <Bio />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

@@ -1,0 +1,30 @@
+---
+import { site } from "../data/site";
+import { reel, embedUrl } from "../data/work";
+const links = [
+  { href: "#work", label: "Work", filter: "all" },
+  { href: "#work", label: "Television", filter: "television" },
+  { href: "#work", label: "Film", filter: "film" },
+  { href: "#work", label: "Music", filter: "music" },
+  { href: "#work", label: "Web", filter: "web" },
+  { href: "#bio", label: "Bio" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label={site.name}>
+      <span class="dot"></span>{site.name}
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href} data-filter={l.filter}>{l.label}</a>)}
+      <a class="nav__reel" href="#" data-embed={embedUrl(reel)} data-title={`${site.name} — ${reel.title}`}>
+        <span class="play-tri"></span>Reel
+      </a>
+    </nav>
+
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>

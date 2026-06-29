@@ -1,0 +1,17 @@
+{
+  "name": "edmondhawkins-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Edmond Hawkins — Writer · Director · Animator. Static portfolio, deployable to GitHub Pages.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "astro": "^5.7.0"
+  }
+}

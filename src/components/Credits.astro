@@ -1,0 +1,36 @@
+---
+import { shows } from "../data/work";
+import { site } from "../data/site";
+import Marquee from "./Marquee.astro";
+---
+
+<section class="section section--tight" id="credits">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Credits</span>
+        <h2 class="section-title">Selected<br />Credits</h2>
+      </div>
+      <p class="section-sub">A decade-plus directing comedy for the networks, streamers and shows that
+        set the tone.</p>
+    </div>
+
+    <div class="credits" data-reveal>
+      {shows.map((s) => (
+        <div class="credit-row">
+          <span class="c-show">{s.show}</span>
+          <span class="c-net">{s.network ?? "Independent"}</span>
+          <span class="c-role">{s.role}</span>
+          <span class="c-year">{s.year ?? "—"}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div style="margin-top: clamp(3rem, 6vw, 5rem);" data-reveal>
+    <div class="wrap" style="margin-bottom: 1.2rem;">
+      <span class="eyebrow">Featuring</span>
+    </div>
+    <Marquee items={site.collaborators} variant="names" label="Notable collaborators" />
+  </div>
+</section>

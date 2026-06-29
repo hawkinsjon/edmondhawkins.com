@@ -1,0 +1,25 @@
+---
+import { site } from "../data/site";
+const highlights = [
+  "HBO", "Netflix", "NBC Late Night", "truTV", "Fuse",
+  "Live Studio Directing", "Animation & VFX", "Writer-Director",
+];
+---
+
+<section class="section" id="bio">
+  <div class="wrap bio">
+    <figure class="bio__photo" data-reveal>
+      <img src="/img/portrait.jpg" alt={`${site.name} on set`} width="980" height="1225" loading="lazy" />
+      <figcaption>On set — photo © Todd Owyoung</figcaption>
+    </figure>
+
+    <div class="bio__body" data-reveal>
+      <span class="eyebrow">Bio</span>
+      <h2 class="section-title" style="margin-bottom: 1.6rem;">The Guy<br />Behind It</h2>
+      {site.bio.map((p) => <p>{p}</p>)}
+      <div class="bio__hl">
+        {highlights.map((h) => <span>{h}</span>)}
+      </div>
+    </div>
+  </div>
+</section>

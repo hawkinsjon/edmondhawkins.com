@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: readonly string[];
+  variant?: "net" | "names";
+  label?: string;
+}
+const { items, variant = "net", label } = Astro.props;
+// duplicate the set so the loop is seamless
+const loop = [...items, ...items];
+---
+
+<div class={`marquee marquee--${variant}`} aria-label={label} role="marquee">
+  <div class="marquee__track">
+    {loop.map((it) => (
+      <>
+        <span>{it}</span>
+        <span class="star" aria-hidden="true">✦</span>
+      </>
+    ))}
+  </div>
+</div>

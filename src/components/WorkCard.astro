@@ -1,0 +1,33 @@
+---
+import { type FlatClip, thumb, embedUrl, categoryLabels } from "../data/work";
+interface Props { clip: FlatClip; eager?: boolean; }
+const { clip, eager = false } = Astro.props;
+const title = `${clip.show} — ${clip.title}`;
+---
+
+<button
+  class="card"
+  data-cat={clip.category}
+  data-embed={embedUrl(clip)}
+  data-title={title}
+  aria-label={`Play: ${title}`}
+>
+  <span class="card__media">
+    {clip.network && <span class="card__badge">{clip.network}</span>}
+    <span class="card__cat">{categoryLabels[clip.category]}</span>
+    <img
+      src={thumb(clip)}
+      alt={title}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      width="480"
+      height="270"
+    />
+    <span class="card__play"><i></i></span>
+  </span>
+  <span class="card__body">
+    <span class="card__show">{clip.show}</span>
+    <span class="card__clip">{clip.title}</span>
+    <span class="card__role">{clip.role}</span>
+  </span>
+</button>

@@ -1,0 +1,12 @@
+---
+import { site } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="brand" href="#top"><span class="dot"></span>{site.name}</a>
+    <span>© {year} {site.name} · Writer · Director · Animator</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
