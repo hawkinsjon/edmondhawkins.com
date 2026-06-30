@@ -30,8 +30,7 @@ export const site = {
     "Desus & Mero", "John Milhiser", "Joe Pera",
   ],
   contact: {
-    // TODO: confirm with Edmond. Placeholder until a real address is supplied.
-    email: "hello@edmondhawkins.com",
+    email: "edmondhawkins@gmail.com",
     location: "Brooklyn, NY",
     // Formspree / Web3Forms endpoint. Drop a real ID here to make the form post in place.
     formEndpoint: "https://formspree.io/f/your-form-id",
