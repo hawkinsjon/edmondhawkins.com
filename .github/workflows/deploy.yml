@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: withastro/action@v3 # installs deps, builds, uploads the Pages artifact
+      - uses: withastro/action@56781b97402ce0487b7e61ce2cb960c0e2cc5289 # v3.0.2 - installs deps, builds, uploads the Pages artifact
 
   deploy:
     needs: build
