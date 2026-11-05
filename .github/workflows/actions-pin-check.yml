@@ -12,19 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
-      - name: Third-party actions must be pinned to a commit SHA
+      - name: All actions must be pinned to a commit SHA
         run: |
           set -eu
           bad=0
           while IFS= read -r line; do
             ref=$(printf '%s' "$line" | sed -E 's/^.*uses:[[:space:]]*["'"'"']?([^"'"'"' #]+).*$/\1/')
             case "$ref" in
-              ./*|docker://*|actions/*|github/*) continue ;;
+              ./*|docker://*) continue ;;
             esac
             if ! printf '%s' "$ref" | grep -Eq '@[0-9a-f]{40}$'; then
-              echo "::error::unpinned third-party action: $ref ($line)"
+              echo "::error::unpinned action: $ref ($line)"
               bad=1
             fi
           done < <(grep -rhoE '^[[:space:]]*-?[[:space:]]*uses:[[:space:]]*.+' .github/)
           [ "$bad" -eq 0 ] || exit 1
-          echo "all third-party actions are SHA-pinned"
+          echo "all actions are SHA-pinned"
